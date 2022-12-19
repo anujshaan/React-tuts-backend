@@ -1,0 +1,75 @@
+const mongoose = require('mongoose');
+
+const userSchema = mongoose.Schema({
+  firstname:{
+    type:String,
+    required:true,
+    trim:true,
+    maxlength:20,
+  },
+  lastname:{
+    type:String,
+    required:true,
+    trim:true,
+    maxlength:20,
+  },
+  email:{
+    type:String,
+    required:true,
+    trim:true,
+    maxlength:25,
+  },
+  password:{
+    type:String,
+    required:true,
+    trim:true,
+    minlength:6
+  },
+  phnumber:{
+    type:String,
+    required:true,
+  },
+  username:{
+    type:String,
+    required:true,
+    unique:true,
+    maxlength:20,
+    trim:true,
+  },
+  avatar:{
+    type:String,
+    default:'https://i.ibb.co/Xkc3Y0f/dp.jpg'
+  },
+  gender:{
+    type:String,
+    default:'male'
+  },
+  address:{
+    type:String,
+    default:''
+  },
+  bio:{
+    type:String,
+    default:'',
+    maxlength:200,
+  },
+  linkedIn:{
+    type:String,
+    default:''
+  },
+  github:{
+    type:String,
+    default:''
+  },
+  friends:[
+    {
+      type:mongoose.Types.ObjectId,
+      ref:'user'
+    }
+  ]
+},{
+  timestamps:true
+})
+
+
+module.exports = mongoose.model('user',userSchema);
